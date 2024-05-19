@@ -1,7 +1,7 @@
 <?php
 
 // /////////////////////////////////////////////////////////////////////////////
-// PLEASE DO NOT RENAME OR REMOVE ANY OF THE CODE BELOW. 
+// PLEASE DO NOT RENAME OR REMOVE ANY OF THE CODE BELOW.
 // YOU CAN ADD YOUR CODE TO THIS FILE TO EXTEND THE FEATURES TO USE THEM IN YOUR WORK.
 // /////////////////////////////////////////////////////////////////////////////
 
@@ -30,7 +30,7 @@ Route::group(['prefix'=>'player'], function () {
     Route::get($idInThePath, [PlayerController::class, 'show']);
     Route::post('/', [PlayerController::class, 'store']);
     Route::put($idInThePath, [PlayerController::class, 'update']);
-    Route::delete($idInThePath, [PlayerController::class, 'destroy']);
+    Route::delete($idInThePath, [PlayerController::class, 'destroy'])->middleware('auth.token');
 });
 
-Route::post('team/process', []);
+Route::post('team/process', [PlayerController::class, 'processTeamSelection']);
